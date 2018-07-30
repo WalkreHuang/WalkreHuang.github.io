@@ -5,10 +5,70 @@
     <url>%2FRestful-Api%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.html</url>
     <content type="text"><![CDATA[简介写接口的开发人员一定不会对它感到陌生，概念啥的就简单介绍一下，主要梳理一下 resful 设计关键内容。resful 全称 Representational State Transfer 是一种软件设计风格。其设计的目的是为了给开发者提供一种设计理念，统一接口开发的规范。 命名规范在 Restful 架构中，所有一切都是资源。每一个 URL 都代表着一种资源，而且大部分情况下都是名词的复数，尽量不要出现动词。eg: 1234567GET /issues 列出所有的 issueGET /orgs/:org/issues 列出某个项目的 issueGET /repos/:owner/:repo/issues/:number 获取某个项目的某个 issuePOST /repos/:owner/:repo/issues 为某个项目创建 issuePATCH /repos/:owner/:repo/issues/:number 修改某个 issuePUT /repos/:owner/:repo/issues/:number/lock 锁住某个 issueDELETE /repos/:owner/:repo/issues/:number/lock 接收某个 issue 例子中的冒号表示的是变量 HTTP动词描述操作Http 中有许多动词可以来描述用户不同的操作，常见的动词及含义如下表所示：| 动词 | 描述 || —— | ———————————- || GET | 获取资源，单个或多个 || POST | 创建资源 || PUT | 更新资源，客户端提供完整的资源数据 || PATCH | 更新资源，客户端提供部分资源数据 || DELETE | 删除资源 | 资源过滤接口需要能够提供合理的参数供客户端过滤资源，eg: 123?state=closed: 不同状态的资源。?page=2&amp;per_page=100：访问第几页数据，每页多少条。?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。 响应状态码正确的使用状态码，可以使响应数据更加具备可读性，eg: 200 OK 对成功的 GET,PUT,PATCH,DELETE 操作进行响应。 201 Created 对创建新资源的 POST 操作进行响应。 202 Accepted 服务器接收了请求，但是还未处理，响应中应该包含相应的指示信息，告诉客户端应该去哪里查询本次请求的信息。 204 No Content 成功处理请求，但返回的响应体中不含实体的主体部分。 301 Permanently Moved 永久性重定向，代表之前请求的资源地址已经发生了变化。 302 Temporarily Moved 临时重定向。 304 Not Modified Http 缓存header 生效时使用。 400 Bad Request 请求异常，比如请求中的 body 无法解析。 401 Unauthorized 没有进行认证或者认证非法。 403 Forbidden 服务器已经理解请求，但是拒绝执行它。 404 Not Found 请求一个不存在的资源。 405 Method Not Allowed 所请求的 Http 方法不允许当前认证用户访问。 410 Gone 表示当前请求的资源不再可用。当调用老版本的 API 时很有用。 415 Unsupported Media Type 请求中的内容类型是错误的。 422 Unprocessable Entity 用来校验错误。 429 Too Many Requests 由于请求频次达到上限而被拒绝访问。 500 Internal Server Error 服务器内部错误 503 Service unavailable 服务器处于宕机状态]]></content>
       <categories>
-        <category>开发</category>
+        <category>接口</category>
       </categories>
       <tags>
         <tag>restfulApi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[laravel源码剖析]]></title>
+    <url>%2Flaravel%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.html</url>
+    <content type="text"><![CDATA[一、请求-响应篇 1.程序启动准备1.1 服务容器实例化 index.php入口文件包含了$app = require_once __DIR__.&#39;/../bootstrap/app.php&#39;;这一行代码，app.php会返回框架的创建的服务容器。这个过程会完成以下几个步骤： 服务容器实例化 注册服务容器本身 注册基础服务提供者 基础路径注册 核心类别名注册 相关源码在Illuminate\Foundation目录下的Application.php文件中。（注：使用的laravel版本：5.1；文中的Illuminate位于 根目录\vendor\laravel\framework\src\ 目录下，为了行文方便，故省略。） ###1.2 核心类（Kernel）实例化 在容器实例化之后，便可以通过服务容器自动实例化对象，实例化代码在index.php 中的 $kernel = $app-&gt;make(Illuminate\Contracts\Http\Kernel::class);。 2.请求实例化完成了第一步的准备工作之后，需要进行请求的实例化，请求实例的创建是通过Illuminate\Http\Request类的capture方法完成的。 3.处理请求完成请求实例化之后，将进入对请求实例的处理阶段，即$response = $kernel-&gt;handle(); 通过不同的处理方式可以返回不同的响应结果，从而实现不同的功能。具体请求的处理是通过Kernel.php中的sendRequestThroughRouter方法实现的。 3.1请求处理准备工作这个准备过程大致包含：环境监测、配置加载、日志配置、异常处理、外观注册、服务提供者注册、启动服务 这7大步骤。在Illuminate\Foundation\Http\Kernel.php 中的$bootstrappers属性进行配置。对应类文件在Illuminate\Foundation\Bootstrap目录下。 3.2中间件在请求处理中，经过烦琐的准备工作，应用程序开始对请求进行处理，Laravel对请求的处理是逐级进行的，首先经过中间件处理，然后通过路由，最后控制器生成响应。 3.3路由处理生成响应 路由匹配 控制器生成 响应生成 4. 响应的发送与程序终止4.1响应的发送整个请求-响应过程最后的部分就是将封装在Illuminate\Http\Response实例中的响应以Http响应的形式发送给客户端，实现一个请求生命周期最后的环节。响应的发送是通过index.php中的$response-&gt;send();实现的。 4.2程序终止完成Http的响应后，进入程序生命周期的最后阶段——程序终止，在Laravel框架中，程序终止主要是完成终止中间件的调用。通过index.php中的terminate()方法实现。 二、数据库连接与管理篇1.数据库管理阶段首先介绍查询构造器实现过程中的数据库管理阶段。查询构造器建立的过程可分为2个阶段：数据库连接封装阶段、查询构造器生成阶段。其中第一阶段又可分为以下四个过程： 数据库管理阶段 数据库连接工厂阶段 数据库连接器阶段 数据库连接创建阶段]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mysql-查询总结]]></title>
+    <url>%2Fmysql-%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93.html</url>
+    <content type="text"><![CDATA[mysql查询在公司，可以说mysql是天天都在写的，但是写的多了之后，对于常见的查询语句并不是很感冒了，因此常常注意一些比较有意思的mysql语句，例如，insert into select可以用于复制表数据。 今天在写一个列表接口时，突然发现null在mysql查询是个特殊的存在，举个栗子：如果想查询出某个字段(beginTime)为null的记录，条件语句如果写成：where beginTime = null 是根本查不出来的。一开始十分疑惑，后来查阅了网上的资料发现，mysql在where语句中使用null，只能通过 is null 或者is not null来筛选出是否为空的记录。因为在mysql中null与任何值比较都会返回false。]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[网站搭建全过程]]></title>
+    <url>%2F%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA%E5%85%A8%E8%BF%87%E7%A8%8B.html</url>
+    <content type="text"><![CDATA[网站从0到上线的完整步骤 记录一下最近搭网站的过程，也为想搭网站的小伙伴们提供一个参考。 First首先，搭网站就跟画画一样，在正式画画之前得先准备几个工具：颜料，画板等等。对应于一个网站来说，它们就是域名与服务器了。个人是在阿里云在买的一套，一个国内域名以及一个低配的ecs云服务器，有了这两个基本工具之后，就需要进行网站备案了（不得不说：阿里云的办事效率是真的高）9月20提交了审核材料，30号备案就完成了。 Next网站备案成功之后，再去阿里云的控制台页面将自己的域名解析到ecs的公网IP上就可以正常访问了。可能有人会说：为什么我输入域名访问显示一片空白呢？哈哈，这时有内容显示才有鬼咧。。毛笔与颜料备齐了之后，如果没有画在画板上，怎么会有内容显示呢！同样的道理，这时我们就需要向服务器中注入网站要显示的内容了。在注入内容之前首先得搭建一个运行环境。没错，该轮到黄金组合LNMP登场了。我使用的是lnmp 一键安装包，具体的网址。Google一下，第一个显示的就是了。使用这个集成安装包的好处就是省时又省力，只需要一行命令，再选择一下各个软件需要安装的版本，之后的一切都会帮你做好，完全的傻瓜式安装。 MORElnmp环境搭建完成之后，输入域名访问，正常情况会显示一个lnmp官方的提示页面，在该页面可以查看php版本信息，以及进入phpmyadmin控制台。接下来就是我写这篇博客的重点内容 了。花了整整将近一天时间在这上面。工具和骨架都搭完了之后，就需要开始画主体内容了。由于我使用的是laravel框架开发的文章发布类的项目。因此入口文件index.php在项目根目录下的public目录中。 而输入域名之后默认解析到服务器的：/home/wwwroot/default 目录下，也就是说即使将项目放在默认的站点目录/home/wwwroot/default/下，输入域名时也访问不到项目的入口文件。经过大量的Google与百度之后终于找到了解决之道。 FINAL修改：/usr/local/nginx/conf/nginx.conf 文件，具体配置项如下： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108user www www;worker_processes auto;error_log /home/wwwlogs/nginx_error.log crit;pid /usr/local/nginx/logs/nginx.pid;#Specifies the value for maximum file descriptors that can be opened by this process.worker_rlimit_nofile 51200;events &#123; use epoll; worker_connections 51200; multi_accept on; &#125;http &#123; include mime.types; default_type application/octet-stream; server_names_hash_bucket_size 128; client_header_buffer_size 32k; large_client_header_buffers 4 32k; client_max_body_size 50m; sendfile on; tcp_nopush on; keepalive_timeout 60; tcp_nodelay on; fastcgi_connect_timeout 300; fastcgi_send_timeout 300; fastcgi_read_timeout 300; fastcgi_buffer_size 64k; fastcgi_buffers 4 64k; fastcgi_busy_buffers_size 128k; fastcgi_temp_file_write_size 256k; gzip on; gzip_min_length 1k; gzip_buffers 4 16k; gzip_http_version 1.1; gzip_comp_level 2; gzip_types text/plain application/javascript application/x-javascript text/javascript text/css application/xml application/xml+rss; gzip_vary on; gzip_proxied expired no-cache no-store private auth; gzip_disable &quot;MSIE [1-6]\.&quot;; #limit_conn_zone $binary_remote_addr zone=perip:10m; ##If enable limit_conn_zone,add &quot;limit_conn perip 10;&quot; to server section. server_tokens off; access_log off; #以下才是真正修改的内容，上面的都是默认的配置无需更改 server &#123; listen 80 default_server; # listen [::]:80 default_server ipv6only=on; server_name 公网的IP; root 项目所在的目录; index index.php index.html index.htm; #注意这里注释掉不然 报错500 ，因为引入了php 配置 #include enable-php.conf; #laravel特有的配置 location / &#123; try_files $uri $uri/ /index.php?$query_string; &#125; location ~ \.php$ &#123; fastcgi_split_path_info ^(.+\.php)(/.+)$; fastcgi_pass unix:/tmp/php-cgi.sock; fastcgi_index index.php; include fastcgi_params; fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; &#125; location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ &#123; expires 30d; &#125; location ~ .*\.(js|css)?$ &#123; expires 12h; &#125; location ~ /.well-known &#123; allow all; &#125; location ~ /\. &#123; deny all; &#125; access_log /home/wwwlogs/access.log; &#125; 保存退出，再去使用lnmp restart重启nginx服务器,这时再输入域名就能正常访问项目下的入口文件了。 以上便是一个完整网站上线的过程。。。 最后附上完成的网站链接:You Write I record,欢迎大家赐教，提出改进意见，本人不胜感激。]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>服务器搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[php-新特性]]></title>
+    <url>%2Fphp-%E6%96%B0%E7%89%B9%E6%80%A7.html</url>
+    <content type="text"><![CDATA[php7.0新特性php作为一门弱类型语言，函数的传入与传出的参数类型一直都比较随意，看了一些书籍后，发现统一参数的类型是非常有必要的。好在新版本的PHP已经支持规定参数格式了。示例如下： 12345678function TypeDeclare(array $param): array&#123; return $param;&#125;$ret = TypeDeclare(&apos;this only test&apos;);print_r($ret); 当传入的参数不符合预期时，会报错： 1Fatal error: Uncaught TypeError: Argument 1 passed to TypeDeclare() must be of the type array, string given, called 再测试返回数据格式不符合预期的情况： 12345678function TypeDeclare(string $param): array&#123; return $param;&#125;$ret = TypeDeclare(&apos;this only test&apos;);print_r($ret); 同样，也会返回一个致命错误，提示返回类型有误。 不得不说，这些新特性，掌握之后，对编程还是有不小帮助的，天知道在写接口时，报错有多少次就是因为数据不统一。]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[php-奇技淫巧]]></title>
+    <url>%2Fphp-%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7.html</url>
+    <content type="text"><![CDATA[1.交换两个变量的值。 分析：常用的做法是添加第三个变量来作为中介完成，这里分享一个不太常用的做法： 1234567891011121314变量为字符串时：$a = &quot;hello&quot;;$b = &quot;php&quot;;list($a,$b) = array($b,$a);或者：$a = $a.$b;$b = strlen($a);$b = substr($a,0,(strlen($a)-$b));$a = substr($a,strlen($b));变量值为数字时：$a=$a+$b; $b=$a-$b;$a=$a-$b; 可以取a=4,b=5代入，进行验证。 对上述两种情况有一个通用的方法： 123$a = array($a,$b);$b = $a[0];$a = $a[1]; 2.不使用php内置方法获取到一个字符串的长度1234567$str = &quot;hello php&quot;;for($length=0;true;$length++) &#123; if(!isset($str[$length])) &#123; break; &#125;&#125; echo $length;//输出$str的长度：9 3.利用php内置函数完成多级目录的递归创建分析：由于老版本(version&lt;5.0)的mkdir函数不能够递归创建目录，因此需要找到新的解决方案。方法1： 喜大普奔，新版本的mkdir已经可以递归创建目录了（^_^）,只需要将第三个参数设置为true即可。方法2： 那么对于旧版本该如何创建呢？下面给出解决代码(十分精简的递归代码) 1234567891011&lt;?php$path = &apos;D:/QQ/files/temp/tests&apos;;function recursive($path) &#123; if(is_dir($path))&#123; return true; &#125;else &#123; recursive(dirname($path)); mkdir($path); &#125;&#125;]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>趣味代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[php设计模式之-单例工厂]]></title>
+    <url>%2Fphp%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B-%E5%8D%95%E4%BE%8B%E5%B7%A5%E5%8E%82.html</url>
+    <content type="text"><![CDATA[一、单例模式单例模式又称为职责模式，它用来在程序中创建一个对象，就是实例化出来的对象是唯一的。 基本格式（三私一公-两静态）： 拥有一个private构造函数 拥有一个private的保存静态实例对象 拥有一个private的克隆方法 拥有一个创建这个实例的public的静态方法,单例类不能再其它类中直接实例化，只能被其自身实例化。 附上自己手敲的实例 12345678910111213141516171819202122232425262728293031323334353637&lt;?php/** * @Author: huang * @Date: 2017-09-27 13:45:08 * @Last Modified by: huang * @Last Modified time: 2017-09-27 13:54:22 */class Student &#123; private static $instance = null; private function __construct() &#123; &#125; private function __clone() &#123; &#125; public static function getInstance() &#123; if(is_null(self::$instance) &amp;&amp; !(self::$instance instanceof self)) &#123; self::$instance = new self; &#125; return self::$instance; &#125;&#125;$single = Student::getInstance();var_dump($single);$single2 = Student::getInstance();var_dump($single2);// $single3 = clone $single; 补充：这里的构造方法声明为私有是为了禁止在类外通过NEW关键字实例化该类。由于getInstance是静态的方法，那么里面不能访问非静态的属性，又不想让外部访问该静态属性，因此声明为静态私有最合适不过。。 二、工厂模式工厂模式，工厂方法或者类生成对象，而不是在代码中直接new 附上相关代码： 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364&lt;?php/** * @Author: huang * @Date: 2017-09-27 14:07:20 * @Last Modified by: huang * @Last Modified time: 2017-09-27 17:21:21 */abstract class Opt&#123; abstract function getValue($num1,$num2);&#125;class add extends Opt&#123; function getValue($num1,$num2) &#123; echo $num1+$num2.PHP_EOL; &#125;&#125;class dec extends Opt&#123; function getValue($num1,$num2) &#123; echo $num1-$num2.PHP_EOL; &#125;&#125;class multi extends Opt&#123; function getValue($num1,$num2) &#123; echo $num1*$num2.PHP_EOL; &#125;&#125;class chu extends Opt&#123; function getValue($num1,$num2) &#123; if($num2 != 0)&#123; echo $num1/$num2.PHP_EOL; &#125; &#125;&#125;class Factory&#123; public static function make($classname) &#123; return new $classname; &#125;&#125;$obj1 = Factory::make(&apos;add&apos;);$obj1-&gt;getValue(2,1);$obj1 = Factory::make(&apos;dec&apos;);$obj1-&gt;getValue(2,1);$obj1 = Factory::make(&apos;multi&apos;);$obj1-&gt;getValue(2,1);$obj1 = Factory::make(&apos;chu&apos;);$obj1-&gt;getValue(2,1); 三、单例工厂模式（前面二者的混合版）原理：通过工厂类,一个类只能生产一个对象. 将新对象存入数组,判断数组中是否有该类对象,如果有,则不会再重新创建.所以一个类只能他创建一个对象. 123456789101112131415161718192021222324252627282930&lt;?php/** * @Author: huang * @Date: 2017-09-27 20:44:24 * @Last Modified by: huang * @Last Modified time: 2017-09-27 20:53:07 */class Sigle_Factory&#123; private static $arr = array(); public static function make($classname) &#123; if(!isset(self::$arr[$classname])) &#123; self::$arr[$classname] = new $classname; &#125; return self::$arr[$classname]; &#125;&#125;class A&#123;&#125;class B&#123;&#125;$obj1 = Sigle_Factory::make(&apos;A&apos;);$obj2 = Sigle_Factory::make(&apos;A&apos;);$obj3 = Sigle_Factory::make(&apos;B&apos;);$obj4 = Sigle_Factory::make(&apos;B&apos;);var_dump($obj1,$obj2,$obj3,$obj4);]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>设计模式</tag>
       </tags>
   </entry>
 </search>

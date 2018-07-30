@@ -1,0 +1,333 @@
+<!DOCTYPE html><html class="theme-next mist use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-small.ico?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="服务器搭建,"><meta name="description" content="网站从0到上线的完整步骤 记录一下最近搭网站的过程，也为想搭网站的小伙伴们提供一个参考。 First首先，搭网站就跟画画一样，在正式画画之前得先准备几个工具：颜料，画板等等。对应于一个网站来说，它们就是域名与服务器了。个人是在阿里云在买的一套，一个国内域名以及一个低配的ecs云服务器，有了这两个基本工具之后，就需要进行网站备案了（不得不说：阿里云的办事效率是真的高）9月20提交了审核材料，30号备"><meta name="keywords" content="服务器搭建"><meta property="og:type" content="article"><meta property="og:title" content="网站搭建全过程"><meta property="og:url" content="https://walkerhuang.cn/网站搭建全过程.html"><meta property="og:site_name" content="Explorer-Of-Life"><meta property="og:description" content="网站从0到上线的完整步骤 记录一下最近搭网站的过程，也为想搭网站的小伙伴们提供一个参考。 First首先，搭网站就跟画画一样，在正式画画之前得先准备几个工具：颜料，画板等等。对应于一个网站来说，它们就是域名与服务器了。个人是在阿里云在买的一套，一个国内域名以及一个低配的ecs云服务器，有了这两个基本工具之后，就需要进行网站备案了（不得不说：阿里云的办事效率是真的高）9月20提交了审核材料，30号备"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="http://img.blog.csdn.net/20171001110111303?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTVNodWFuZzY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"><meta property="og:updated_time" content="2018-07-30T13:54:26.092Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="网站搭建全过程"><meta name="twitter:description" content="网站从0到上线的完整步骤 记录一下最近搭网站的过程，也为想搭网站的小伙伴们提供一个参考。 First首先，搭网站就跟画画一样，在正式画画之前得先准备几个工具：颜料，画板等等。对应于一个网站来说，它们就是域名与服务器了。个人是在阿里云在买的一套，一个国内域名以及一个低配的ecs云服务器，有了这两个基本工具之后，就需要进行网站备案了（不得不说：阿里云的办事效率是真的高）9月20提交了审核材料，30号备"><meta name="twitter:image" content="http://img.blog.csdn.net/20171001110111303?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTVNodWFuZzY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Mist",version:"5.1.4",sidebar:{position:"left",display:"hide",offset:12,b2t:!1,scrollpercent:!0,onmobile:!1},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="https://walkerhuang.cn/网站搭建全过程.html"><title>网站搭建全过程 | Explorer-Of-Life</title></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Explorer-Of-Life</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">Life isn't only programming</p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i><br> 归档</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-list"></i><br> 分类</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-movies"><a href="/movies" rel="section"><i class="menu-item-icon fa fa-fw fa-film"></i><br> 电影</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br> 搜索</a></li></ul><div class="site-search"><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class="search-icon"><i class="fa fa-search"></i></span><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span><div class="local-search-input-wrapper"> <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input"></div></div><div id="local-search-result"></div></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://walkerhuang.cn/网站搭建全过程.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="walkerhuang"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Explorer-Of-Life"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">网站搭建全过程</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-01T11:25:34+08:00">2017-10-01</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a></span></span> <span class="post-comments-count"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-comment-o"></i></span><a href="/网站搭建全过程.html#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/网站搭建全过程.html" itemprop="commentCount"></span></a></span> <span id="/网站搭建全过程.html" class="leancloud_visitors" data-flag-title="网站搭建全过程"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-eye"></i></span> <span class="post-meta-item-text">热度&#58;</span><span class="leancloud-visitors-count"></span> <span>℃</span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span> <span class="post-meta-item-text">字数统计&#58;</span> <span title="字数统计">1,151</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span> <span class="post-meta-item-text">阅读时长 &asymp;</span> <span title="阅读时长">5</span></div></div></header><div class="post-body" itemprop="articleBody"><h1 id="网站从0到上线的完整步骤"><a href="#网站从0到上线的完整步骤" class="headerlink" title="网站从0到上线的完整步骤"></a>网站从0到上线的完整步骤</h1><hr><p>记录一下最近搭网站的过程，也为想搭网站的小伙伴们提供一个参考。</p><h2 id="First"><a href="#First" class="headerlink" title="First"></a>First</h2><p>首先，搭网站就跟画画一样，在正式画画之前得先准备几个工具：颜料，画板等等。对应于一个网站来说，它们就是域名与服务器了。个人是在阿里云在买的一套，一个国内域名以及一个低配的ecs云服务器，有了这两个基本工具之后，就需要进行网站备案了（不得不说：阿里云的办事效率是真的高）9月20提交了审核材料，30号备案就完成了。</p><h2 id="Next"><a href="#Next" class="headerlink" title="Next"></a>Next</h2><p>网站备案成功之后，再去阿里云的控制台页面将自己的域名解析到ecs的公网IP上就可以正常访问了。可能有人会说：为什么我输入域名访问显示一片空白呢？哈哈，这时有内容显示才有鬼咧。。毛笔与颜料备齐了之后，如果没有画在画板上，怎么会有内容显示呢！同样的道理，这时我们就需要向服务器中注入网站要显示的内容了。在注入内容之前首先得搭建一个运行环境。没错，该轮到黄金组合LNMP登场了。我使用的是lnmp 一键安装包，具体的网址。Google一下，第一个显示的就是了。使用这个集成安装包的好处就是省时又省力，只需要一行命令，再选择一下各个软件需要安装的版本，之后的一切都会帮你做好，完全的傻瓜式安装。</p><h2 id="MORE"><a href="#MORE" class="headerlink" title="MORE"></a>MORE</h2><p>lnmp环境搭建完成之后，输入域名访问，正常情况会显示一个lnmp官方的提示页面，在该页面可以查看php版本信息，以及进入phpmyadmin控制台。接下来就是我写这篇博客的重点内容 了。花了整整将近一天时间在这上面。<br>工具和骨架都搭完了之后，就需要开始画主体内容了。由于我使用的是laravel框架开发的文章发布类的项目。因此入口文件index.php在项目根目录下的public目录中。</p><p><img src="http://img.blog.csdn.net/20171001110111303?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvTVNodWFuZzY2NjY=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p><p>而输入域名之后默认解析到服务器的：/home/wwwroot/default 目录下，也就是说即使将项目放在默认的站点目录/home/wwwroot/default/下，输入域名时也访问不到项目的入口文件。经过大量的Google与百度之后终于找到了解决之道。</p><h2 id="FINAL"><a href="#FINAL" class="headerlink" title="FINAL"></a>FINAL</h2><p>修改：/usr/local/nginx/conf/nginx.conf 文件，具体配置项如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">user  www www;</span><br><span class="line"></span><br><span class="line">worker_processes auto;</span><br><span class="line"></span><br><span class="line">error_log  /home/wwwlogs/nginx_error.log  crit;</span><br><span class="line"></span><br><span class="line">pid        /usr/local/nginx/logs/nginx.pid;</span><br><span class="line"></span><br><span class="line">#Specifies the value for maximum file descriptors that can be opened by this process.</span><br><span class="line">worker_rlimit_nofile 51200;</span><br><span class="line"></span><br><span class="line">events</span><br><span class="line">    &#123;</span><br><span class="line">        use epoll;</span><br><span class="line">        worker_connections 51200;</span><br><span class="line">        multi_accept on;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">http</span><br><span class="line">    &#123;</span><br><span class="line">        include       mime.types;</span><br><span class="line">        default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">        server_names_hash_bucket_size 128;</span><br><span class="line">        client_header_buffer_size 32k;</span><br><span class="line">        large_client_header_buffers 4 32k;</span><br><span class="line">        client_max_body_size 50m;</span><br><span class="line"></span><br><span class="line">        sendfile   on;</span><br><span class="line">        tcp_nopush on;</span><br><span class="line"></span><br><span class="line">        keepalive_timeout 60;</span><br><span class="line"></span><br><span class="line">        tcp_nodelay on;</span><br><span class="line"></span><br><span class="line">        fastcgi_connect_timeout 300;</span><br><span class="line">        fastcgi_send_timeout 300;</span><br><span class="line">        fastcgi_read_timeout 300;</span><br><span class="line">        fastcgi_buffer_size 64k;</span><br><span class="line">        fastcgi_buffers 4 64k;</span><br><span class="line">        fastcgi_busy_buffers_size 128k;</span><br><span class="line">        fastcgi_temp_file_write_size 256k;</span><br><span class="line"></span><br><span class="line">        gzip on;</span><br><span class="line">        gzip_min_length  1k;</span><br><span class="line">        gzip_buffers     4 16k;</span><br><span class="line">        gzip_http_version 1.1;</span><br><span class="line">        gzip_comp_level 2;</span><br><span class="line">        gzip_types     text/plain application/javascript application/x-javascript text/javascript text/css application/xml application/xml+rss;</span><br><span class="line">        gzip_vary on;</span><br><span class="line">        gzip_proxied   expired no-cache no-store private auth;</span><br><span class="line">        gzip_disable   &quot;MSIE [1-6]\.&quot;;</span><br><span class="line"></span><br><span class="line">        #limit_conn_zone $binary_remote_addr zone=perip:10m;</span><br><span class="line">        ##If enable limit_conn_zone,add &quot;limit_conn perip 10;&quot; to server section.</span><br><span class="line"></span><br><span class="line">        server_tokens off;</span><br><span class="line">        access_log off;</span><br><span class="line">        </span><br><span class="line">        #以下才是真正修改的内容，上面的都是默认的配置无需更改</span><br><span class="line">	    server &#123;</span><br><span class="line">            listen 80 default_server;</span><br><span class="line">           # listen [::]:80 default_server ipv6only=on;</span><br><span class="line">            server_name 公网的IP;</span><br><span class="line"></span><br><span class="line">            root  项目所在的目录;</span><br><span class="line">            index index.php index.html index.htm;</span><br><span class="line">	       </span><br><span class="line">	       #注意这里注释掉不然 报错500 ，因为引入了php 配置</span><br><span class="line">           #include enable-php.conf;</span><br><span class="line">		   #laravel特有的配置</span><br><span class="line">            location / &#123;</span><br><span class="line">                try_files $uri $uri/ /index.php?$query_string;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            location ~ \.php$</span><br><span class="line">            &#123;</span><br><span class="line">                fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">                fastcgi_pass  unix:/tmp/php-cgi.sock;</span><br><span class="line">                fastcgi_index index.php;</span><br><span class="line">                include fastcgi_params;</span><br><span class="line">	            fastcgi_param SCRIPT_FILENAME      $document_root$fastcgi_script_name;</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$</span><br><span class="line">                &#123;</span><br><span class="line">                      expires      30d;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">             location ~ .*\.(js|css)?$</span><br><span class="line">             &#123;</span><br><span class="line">                    expires      12h;</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">              location ~ /.well-known &#123;</span><br><span class="line">                   allow all;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">              location ~ /\.</span><br><span class="line">              &#123;</span><br><span class="line">                  deny all;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">            access_log  /home/wwwlogs/access.log;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>保存退出，再去<br>使用lnmp restart重启nginx服务器,这时再输入域名就能正常访问项目下的入口文件了。</p><p>以上便是一个完整网站上线的过程。。。</p><p>最后附上完成的网站链接:<a href="http://walkerhuang.cn/">You Write I record</a>,欢迎大家赐教，提出改进意见，本人不胜感激。</p></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------The End-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/服务器搭建/" rel="tag"><i class="fa fa-tag"></i> 服务器搭建</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/php-新特性.html" rel="next" title="php-新特性"><i class="fa fa-chevron-left"></i> php-新特性</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/mysql-查询总结.html" rel="prev" title="mysql-查询总结">mysql-查询总结<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="walkerhuang"><p class="site-author-name" itemprop="name">walkerhuang</p><p class="site-description motion-element" itemprop="description">生活不仅仅只有编程</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives"><span class="site-state-item-count">7</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <a href="/categories/index.html"><span class="site-state-item-count">4</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"> <a href="/tags/index.html"><span class="site-state-item-count">5</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/WalkreHuang" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:phpererhuang@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span><span class="links-of-author-item"><a href="https://plus.google.com/lihuang chen" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i> Google</a></span></div><div id="music163player"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=25706282&auto=1&height=66"></iframe></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网站从0到上线的完整步骤"><span class="nav-number">1.</span> <span class="nav-text">网站从0到上线的完整步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First"><span class="nav-number">1.1.</span> <span class="nav-text">First</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Next"><span class="nav-number">1.2.</span> <span class="nav-text">Next</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MORE"><span class="nav-number">1.3.</span> <span class="nav-text">MORE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FINAL"><span class="nav-number">1.4.</span> <span class="nav-text">FINAL</span></a></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2018</span> <span class="post-meta-divider">|</span><i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv">本站访客数:<span id="busuanzi_value_site_uv"></span></span><br><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">walkerhuang</span> <span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-area-chart"></i></span> <span class="post-meta-item-text">本站总字数&#58;</span> <span title="本站总字数">4.3k</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/three/three.min.js"></script><script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine/dist/Valine.min.js"></script><script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: 'eTKECcUFPr6Pe4Vo7S4Ytwl5-gzGzoHsz',
+        appKey: 'klSELG0IpmYlkSjYBnb2os9F',
+        placeholder: '欢迎文明交流~',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'' || 10,
+    });
+  </script><script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script><script>AV.initialize("eTKECcUFPr6Pe4Vo7S4Ytwl5-gzGzoHsz","klSELG0IpmYlkSjYBnb2os9F")</script><script>function showTime(e){var t=new AV.Query(e),c=[],u=$(".leancloud_visitors");u.each(function(){c.push($(this).attr("id").trim())}),t.containedIn("url",c),t.find().done(function(e){var t=".leancloud-visitors-count";if(0!==e.length){for(var n=0;n<e.length;n++){var o=e[n],i=o.get("url"),s=o.get("time"),r=document.getElementById(i);$(r).find(t).text(s)}for(n=0;n<c.length;n++){i=c[n],r=document.getElementById(i);var l=$(r).find(t);""==l.text()&&l.text(0)}}else u.find(t).text(0)}).fail(function(e,t){console.log("Error: "+t.code+" "+t.message)})}function addCount(i){var e=$(".leancloud_visitors"),s=e.attr("id").trim(),r=e.attr("data-flag-title").trim(),t=new AV.Query(i);t.equalTo("url",s),t.find({success:function(e){if(0<e.length){var t=e[0];t.fetchWhenSave(!0),t.increment("time"),t.save(null,{success:function(e){$(document.getElementById(s)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to save Visitor num, with error message: "+t.message)}})}else{var n=new i,o=new AV.ACL;o.setPublicReadAccess(!0),o.setPublicWriteAccess(!0),n.setACL(o),n.set("title",r),n.set("url",s),n.set("time",1),n.save(null,{success:function(e){$(document.getElementById(s)).find(".leancloud-visitors-count").text(e.get("time"))},error:function(e,t){console.log("Failed to create")}})}},error:function(e){console.log("Error:"+e.code+" "+e.message)}})}$(function(){var e=AV.Object.extend("Counter");1==$(".leancloud_visitors").length?addCount(e):1<$(".post-title-link").length&&showTime(e)})</script><script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script></body></html>
