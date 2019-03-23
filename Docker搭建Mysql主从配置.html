@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="blog,movies,walker" />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -86,16 +86,22 @@
 
 
 
-<meta name="description" content="砥砺前行">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Stay hungry,Stay modest!">
-<meta property="og:url" content="https://walkerhuang.cn/archives/2018/index.html">
+<meta name="description" content="Docker配置Mysql主从复制为什么基于 Docker 搭建？ 一台机器上可以运行多个 Docker 容器 Docker 容器之间相互独立，有独立 ip，互不冲突 Docker 使用步骤简便，启动容器在秒级别  利用 Docker 搭建主从服务器首先拉取 docker 镜像，这里使用5.7版本的 mysql docker pull mysql:5.7 在宿主机中创建配置文件，方便同步到对应的">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 配置 Mysql主从复制">
+<meta property="og:url" content="https://walkerhuang.cn/Docker搭建Mysql主从配置.html">
 <meta property="og:site_name" content="Stay hungry,Stay modest!">
-<meta property="og:description" content="砥砺前行">
+<meta property="og:description" content="Docker配置Mysql主从复制为什么基于 Docker 搭建？ 一台机器上可以运行多个 Docker 容器 Docker 容器之间相互独立，有独立 ip，互不冲突 Docker 使用步骤简便，启动容器在秒级别  利用 Docker 搭建主从服务器首先拉取 docker 镜像，这里使用5.7版本的 mysql docker pull mysql:5.7 在宿主机中创建配置文件，方便同步到对应的">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://walkerhuang.cn/images/aa.png">
+<meta property="og:image" content="https://walkerhuang.cn/images/bb.png">
+<meta property="og:image" content="https://walkerhuang.cn/images/cc.png">
+<meta property="og:updated_time" content="2019-03-23T12:38:04.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stay hungry,Stay modest!">
-<meta name="twitter:description" content="砥砺前行">
+<meta name="twitter:title" content="docker 配置 Mysql主从复制">
+<meta name="twitter:description" content="Docker配置Mysql主从复制为什么基于 Docker 搭建？ 一台机器上可以运行多个 Docker 容器 Docker 容器之间相互独立，有独立 ip，互不冲突 Docker 使用步骤简便，启动容器在秒级别  利用 Docker 搭建主从服务器首先拉取 docker 镜像，这里使用5.7版本的 mysql docker pull mysql:5.7 在宿主机中创建配置文件，方便同步到对应的">
+<meta name="twitter:image" content="https://walkerhuang.cn/images/aa.png">
 
 
 
@@ -125,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://walkerhuang.cn/archives/2018/"/>
+  <link rel="canonical" href="https://walkerhuang.cn/Docker搭建Mysql主从配置.html"/>
 
 
 
 
 
-  <title>归档 | Stay hungry,Stay modest!</title>
+  <title>docker 配置 Mysql主从复制 | Stay hungry,Stay modest!</title>
   
 
 
@@ -150,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,185 +304,266 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://walkerhuang.cn/Docker搭建Mysql主从配置.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huangwalker">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry,Stay modest!">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">docker 配置 Mysql主从复制</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-23T20:00:20+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 9 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Docker搭建Mysql主从配置.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Docker搭建Mysql主从配置.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/Docker搭建Mysql主从配置.html" class="leancloud_visitors" data-flag-title="docker 配置 Mysql主从复制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/Restful-Api设计规范.html" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Restful Api设计规范</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  773
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-29T16:04:46+08:00"
-              content="2018-07-29" >
-          07-29
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/开发测试总结.html" itemprop="url">
-              
-                <span itemprop="name">开发测试总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-22T11:29:03+08:00"
-              content="2018-06-22" >
-          06-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/laravel源码剖析.html" itemprop="url">
-              
-                <span itemprop="name">laravel源码剖析</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-29T07:34:50+08:00"
-              content="2018-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <h1 id="Docker配置Mysql主从复制"><a href="#Docker配置Mysql主从复制" class="headerlink" title="Docker配置Mysql主从复制"></a>Docker配置Mysql主从复制</h1><h4 id="为什么基于-Docker-搭建？"><a href="#为什么基于-Docker-搭建？" class="headerlink" title="为什么基于 Docker 搭建？"></a>为什么基于 Docker 搭建？</h4><ul>
+<li>一台机器上可以运行多个 Docker 容器</li>
+<li>Docker 容器之间相互独立，有独立 ip，互不冲突</li>
+<li>Docker 使用步骤简便，启动容器在秒级别</li>
+</ul>
+<h4 id="利用-Docker-搭建主从服务器"><a href="#利用-Docker-搭建主从服务器" class="headerlink" title="利用 Docker 搭建主从服务器"></a>利用 Docker 搭建主从服务器</h4><p>首先拉取 docker 镜像，这里使用5.7版本的 mysql</p>
+<p><code>docker pull mysql:5.7</code></p>
+<h4 id="在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置"><a href="#在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置" class="headerlink" title="在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置"></a>在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置</h4><p>首先在家目录中创建 mysql_volume， 再分别创建主从配置文件:<br><img src="/images/aa.png" alt=""></p>
+<p>其中 master 的 my.cnf 配置内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server_id = 1</span><br><span class="line"></span><br><span class="line">log-bin= mysql-bin</span><br><span class="line"></span><br><span class="line">read-only=0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">replicate-ignore-db=mysql</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=sys</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=information_schema</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=performance_schema</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/conf.d/</span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/mysql.conf.d/</span><br></pre></td></tr></table></figure>
+<p>slave 的 my.cnf 配置内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server_id = 2</span><br><span class="line"></span><br><span class="line">log-bin= mysql-bin</span><br><span class="line"></span><br><span class="line">read-only=1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">replicate-ignore-db=mysql</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=sys</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=information_schema</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=performance_schema</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/conf.d/</span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/mysql.conf.d/</span><br></pre></td></tr></table></figure>
+<h4 id="创建-master-主容器"><a href="#创建-master-主容器" class="headerlink" title="创建 master 主容器"></a>创建 master 主容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mastermysql -d -p 3339:3306 -e MYSQL_ROOT_PASSWORD=root -v ~/mysql_volume/master/data:/var/lib/mysql -v ~/mysql_volume/master/conf/my.cnf:/etc/mysql/my.cnf mysql:5.7</span><br></pre></td></tr></table></figure>
+<p>对上述命令稍作解释：</p>
+<p>–name 指定容器名称, -d 代表后台运行;</p>
+<p>-p 3339:3306 将宿主机的3339端口映射到容器3306端口，这样就可以通过访问宿主机的3339端口来间接的连接到容器里的mysql服务了；</p>
+<p>MYSQL_ROOT_PASSWORD=root 指定 root 用户的密码为 root;</p>
+<p>-v 则是将宿主机配置文件挂载到容器的对应的文件下，间接地操作容器里的配置文件；</p>
+<h4 id="创建-slave-从容器"><a href="#创建-slave-从容器" class="headerlink" title="创建 slave 从容器"></a>创建 slave 从容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name slavemysql -d -p 3340:3306 -e MYSQL_ROOT_PASSWORD=root -v ~/mysql_volume/slave/data:/var/lib/mysql -v ~/mysql_volume/slave/conf/my.cnf:/etc/mysql/my.cnf mysql:5.7</span><br></pre></td></tr></table></figure>
+<p>使用 <code>docker ps</code> 查看创建的容器<br><img src="/images/bb.png" alt=""></p>
+<p>此时可以使用Navicat等工具测试连接mysql<br><img src="/images/cc.png" alt=""></p>
+<h4 id="通过-navicat-工具在-master-数据库创建数据同步用户-并授予-REPLICATION-SLAVE-权限"><a href="#通过-navicat-工具在-master-数据库创建数据同步用户-并授予-REPLICATION-SLAVE-权限" class="headerlink" title="通过 navicat 工具在 master 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限"></a>通过 navicat 工具在 master 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &apos;slave&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<p>查看状态，记住 File、Position的值，在 slave 中将用到。</p>
+<h4 id="通过-navicat-工具在-slave-数据库设置主库链接"><a href="#通过-navicat-工具在-slave-数据库设置主库链接" class="headerlink" title="通过 navicat 工具在 slave 数据库设置主库链接"></a>通过 navicat 工具在 slave 数据库设置主库链接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;172.17.0.2&apos;,master_user=&apos;slave&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000003&apos;,master_log_pos=686,master_port=3306;</span><br></pre></td></tr></table></figure>
+<p><strong>命令说明：</strong></p>
+<p><strong>master_host</strong> ：Master的地址，指的是容器的独立ip,可以通过<code>docker inspect 容器名称|容器id |grep IPAddress</code>查询容器的ip</p>
+<p><strong>master_port</strong>：Master的端口号，指的是容器的端口号</p>
+<p><strong>master_user</strong>：用于数据同步的用户</p>
+<p><strong>master_password</strong>：用于同步的用户的密码</p>
+<p><strong>master_log_file</strong>：指定 Slave 从哪个日志文件开始复制数据，即上文中提到的 File 字段的值</p>
+<p><strong>master_log_pos</strong>：从哪个 Position 开始读，即上文中提到的 Position 字段的值</p>
+<p><strong>master_connect_retry</strong>：如果连接失败，重试的时间间隔，单位是秒，默认是60秒</p>
+<h4 id="启动从库同步"><a href="#启动从库同步" class="headerlink" title="启动从库同步"></a>启动从库同步</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start slave;</span><br></pre></td></tr></table></figure>
+<p>如果 <code>show slave status;</code>命令结果中出现： Slave_IO_Running: Yes Slave_SQL_Running: Yes 以上两项都为Yes，那说明没问题了。 </p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/mysql-查询总结.html" itemprop="url">
-              
-                <span itemprop="name">mysql-查询总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-04T14:11:01+08:00"
-              content="2018-05-04" >
-          05-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Restful-Api设计规范.html" rel="next" title="Restful Api设计规范">
+                <i class="fa fa-chevron-left"></i> Restful Api设计规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -484,6 +571,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -504,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -594,6 +697,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker配置Mysql主从复制"><span class="nav-number">1.</span> <span class="nav-text">Docker配置Mysql主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么基于-Docker-搭建？"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">为什么基于 Docker 搭建？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用-Docker-搭建主从服务器"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">利用 Docker 搭建主从服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-master-主容器"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">创建 master 主容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-slave-从容器"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">创建 slave 从容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-navicat-工具在-master-数据库创建数据同步用户-并授予-REPLICATION-SLAVE-权限"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">通过 navicat 工具在 master 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-navicat-工具在-slave-数据库设置主库链接"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">通过 navicat 工具在 slave 数据库设置主库链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动从库同步"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">启动从库同步</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -729,6 +848,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
