@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="blog,movies,walker" />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -86,17 +86,22 @@
 
 
 
-<meta name="description" content="砥砺前行">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://walkerhuang.cn/categories/index.html">
+<meta name="description" content="Docker配置Mysql多主同步为什么需要多主？传统的一主多从，如果单主存在单点故障，从库切换成主库需要作改动。额如果是双主或者多主，就会增加mysql入口，增加高可用。 双主架构的方案思路是：1.两台mysql都可读写，互为主备，默认只使用一台（masterA）负责数据的写入，另一台（masterB）备用； 2.masterA是masterB的主库，masterB又是masterA的主库，它们">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker 配置 Mysql多主同步">
+<meta property="og:url" content="https://walkerhuang.cn/Docker搭建Mysql多主.html">
 <meta property="og:site_name" content="Stay hungry,Stay modest!">
-<meta property="og:description" content="砥砺前行">
+<meta property="og:description" content="Docker配置Mysql多主同步为什么需要多主？传统的一主多从，如果单主存在单点故障，从库切换成主库需要作改动。额如果是双主或者多主，就会增加mysql入口，增加高可用。 双主架构的方案思路是：1.两台mysql都可读写，互为主备，默认只使用一台（masterA）负责数据的写入，另一台（masterB）备用； 2.masterA是masterB的主库，masterB又是masterA的主库，它们">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-25T14:07:55.386Z">
+<meta property="og:image" content="https://walkerhuang.cn/images/dd.png">
+<meta property="og:image" content="https://walkerhuang.cn/images/ee.png">
+<meta property="og:image" content="https://walkerhuang.cn/images/cc.png">
+<meta property="og:updated_time" content="2019-03-24T04:54:22.089Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="砥砺前行">
+<meta name="twitter:title" content="docker 配置 Mysql多主同步">
+<meta name="twitter:description" content="Docker配置Mysql多主同步为什么需要多主？传统的一主多从，如果单主存在单点故障，从库切换成主库需要作改动。额如果是双主或者多主，就会增加mysql入口，增加高可用。 双主架构的方案思路是：1.两台mysql都可读写，互为主备，默认只使用一台（masterA）负责数据的写入，另一台（masterB）备用； 2.masterA是masterB的主库，masterB又是masterA的主库，它们">
+<meta name="twitter:image" content="https://walkerhuang.cn/images/dd.png">
 
 
 
@@ -126,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://walkerhuang.cn/categories/"/>
+  <link rel="canonical" href="https://walkerhuang.cn/Docker搭建Mysql多主.html"/>
 
 
 
 
 
-  <title>分类 | Stay hungry,Stay modest!</title>
+  <title>docker 配置 Mysql多主同步 | Stay hungry,Stay modest!</title>
   
 
 
@@ -301,40 +306,266 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://walkerhuang.cn/Docker搭建Mysql多主.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="huangwalker">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Stay hungry,Stay modest!">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">分类</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 6 个分类
+          <h1 class="post-title" itemprop="name headline">docker 配置 Mysql多主同步</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T09:00:10+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Docker搭建Mysql多主.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Docker搭建Mysql多主.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/Docker搭建Mysql多主.html" class="leancloud_visitors" data-flag-title="docker 配置 Mysql多主同步">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  972
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/接口/">接口</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/测试/">测试</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a><span class="category-list-count">2</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Docker配置Mysql多主同步"><a href="#Docker配置Mysql多主同步" class="headerlink" title="Docker配置Mysql多主同步"></a>Docker配置Mysql多主同步</h1><h3 id="为什么需要多主？"><a href="#为什么需要多主？" class="headerlink" title="为什么需要多主？"></a>为什么需要多主？</h3><p>传统的一主多从，如果单主存在单点故障，从库切换成主库需要作改动。额如果是双主或者多主，就会增加mysql入口，增加高可用。</p>
+<h3 id="双主架构的方案思路是："><a href="#双主架构的方案思路是：" class="headerlink" title="双主架构的方案思路是："></a>双主架构的方案思路是：</h3><p>1.两台mysql都可读写，互为主备，默认只使用一台（masterA）负责数据的写入，另一台（masterB）备用；</p>
+<p>2.masterA是masterB的主库，masterB又是masterA的主库，它们互为主从；</p>
+<p>3.两台主库之间做高可用,可以采用keepalived等方案（使用VIP对外提供服务）；</p>
+<p>4.所有提供服务的从服务器与masterB进行主从同步（双主多从）;</p>
+<p>5.建议采用高可用策略的时候，masterA或masterB均不因宕机恢复后而抢占VIP（非抢占模式）;</p>
+<p>优点：可以在一定程度上保证主库的高可用,在一台主库down掉之后,可以在极短的时间内切换到另一台主库上（尽可能减少主库宕机对业务造成的影响），减少了主从同步给线上主库带来的压力；</p>
+<p>缺点：masterB可能会一直处于空闲状态（可以用它当从库，负责部分查询）；masterB可能会一直处于空闲状态（可以用它当从库，负责部分查询）；</p>
+<h3 id="具体操作："><a href="#具体操作：" class="headerlink" title="具体操作："></a>具体操作：</h3><h4 id="在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置"><a href="#在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置" class="headerlink" title="在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置"></a>在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置</h4><p>首先在家目录中创建 mysql_master_volume， 再分别创建主从配置文件:</p>
+<p><img src="/images/dd.png" alt=""></p>
+<p>主主配置文件:</p>
+<p>mone:my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server_id = 1#集群里的每台id都需要唯一</span><br><span class="line">log-bin= mysql-bin#开启bin-log</span><br><span class="line"></span><br><span class="line">#忽略同步的表</span><br><span class="line">replicate-ignore-db=mysql</span><br><span class="line">replicate-ignore-db=sys</span><br><span class="line">replicate-ignore-db=information_schema</span><br><span class="line">replicate-ignore-db=performance_schema</span><br><span class="line"></span><br><span class="line">read-only=0#关闭只读</span><br><span class="line">relay_log=mysql-relay-bin#开启中继日志</span><br><span class="line">log-slave-updates=on</span><br><span class="line">auto-increment-offset=1#自增长Id初始值</span><br><span class="line">auto-increment-increment=2#自增长数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/conf.d/</span><br><span class="line">!includedir /etc/mysql/mysql.conf.d/</span><br></pre></td></tr></table></figure>
+<p> mtwo:my.cnf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server_id = 2</span><br><span class="line">log-bin= mysql-bin</span><br><span class="line"></span><br><span class="line">replicate-ignore-db=mysql</span><br><span class="line">replicate-ignore-db=sys</span><br><span class="line">replicate-ignore-db=information_schema</span><br><span class="line">replicate-ignore-db=performance_schema</span><br><span class="line"></span><br><span class="line">read-only=0</span><br><span class="line">relay_log=mysql-relay-bin</span><br><span class="line">log-slave-updates=on</span><br><span class="line">auto-increment-offset=2</span><br><span class="line">auto-increment-increment=2</span><br><span class="line"></span><br><span class="line">!includedir /etc/mysql/conf.d/</span><br><span class="line">!includedir /etc/mysql/mysql.conf.d/</span><br></pre></td></tr></table></figure>
+<p>需要特别说明的是：多主需要考虑自增长ID问题 ，保证增长ID相互不冲突，像双主便可以考虑使用奇偶主键实现。 </p>
+<h4 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//mone</span><br><span class="line">docker run --name monemysql -d -p 3317:3306 -e MYSQL_ROOT_PASSWORD=root -v ~/mysql_master_volume/mone/data:/var/lib/mysql -v ~/mysql_master_volume/mone/conf/my.cnf:/etc/mysql/my.cnf mysql:5.7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//mtwo</span><br><span class="line">docker run --name mtwomysql -d -p 3318:3306 -e MYSQL_ROOT_PASSWORD=root -v ~/mysql_master_volume/mtwo/data:/var/lib/mysql -v ~/mysql_master_volume/mtwo/conf/my.cnf:/etc/mysql/my.cnf mysql:5.7</span><br></pre></td></tr></table></figure>
+<p>使用 <code>docker ps</code> 查看创建的容器</p>
+<p><img src="/images/ee.png" alt=""></p>
+<p>此时可以使用Navicat等工具测试连接mysql</p>
+<p><img src="/images/cc.png" alt=""></p>
+<p>通过 navicat 工具在 mone 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<p>通过<code>show master status;</code>查看状态，记住 File、Position的值，在 mtwo 中将用到。</p>
+<p>通过 navicat 工具在 mtwo 数据库设置 mone 主库链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;172.17.0.2&apos;,master_user=&apos;slave&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000003&apos;,master_log_pos=440,master_port=3306;</span><br></pre></td></tr></table></figure>
+<p>并创建一个用户来同步数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
+<p>启动同步</p>
+<p><code>start slave;</code></p>
+<p>查看状态</p>
+<p><code>show slave status;</code>命令结果中出现： Slave_IO_Running: Yes Slave_SQL_Running: Yes 以上两项都为Yes，那以上部分都没问题。</p>
+<p>设置完后，再次进入 mone 数据库，设置 mtwo 主库链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;172.17.0.3&apos;,master_user=&apos;slave&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000003&apos;,master_log_pos=443,master_port=3306;</span><br></pre></td></tr></table></figure>
+<p>启动同步</p>
+<p><code>start slave;</code></p>
+<p>配置完成之后，在 mone,mtwo中分别执行 <code>show slave status</code>，如果 Slave_IO_Running 和 Slave_SQL_Running 都显示为 Yes 时，说明双主已经配置成功了！</p>
+
       
     </div>
     
     
     
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------The End-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"><i class="fa fa-tag"></i> docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Docker搭建Mysql主从配置.html" rel="next" title="docker 配置 Mysql主从复制">
+                <i class="fa fa-chevron-left"></i> docker 配置 Mysql主从复制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -343,6 +574,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -363,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,6 +700,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker配置Mysql多主同步"><span class="nav-number">1.</span> <span class="nav-text">Docker配置Mysql多主同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要多主？"><span class="nav-number">1.0.1.</span> <span class="nav-text">为什么需要多主？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双主架构的方案思路是："><span class="nav-number">1.0.2.</span> <span class="nav-text">双主架构的方案思路是：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体操作："><span class="nav-number">1.0.3.</span> <span class="nav-text">具体操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在宿主机中创建配置文件，方便同步到对应的-mysql-容器中的配置"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">在宿主机中创建配置文件，方便同步到对应的 mysql 容器中的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建容器"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">创建容器</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

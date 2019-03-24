@@ -97,7 +97,7 @@
 <meta property="og:image" content="https://walkerhuang.cn/images/aa.png">
 <meta property="og:image" content="https://walkerhuang.cn/images/bb.png">
 <meta property="og:image" content="https://walkerhuang.cn/images/cc.png">
-<meta property="og:updated_time" content="2019-03-23T12:38:04.451Z">
+<meta property="og:updated_time" content="2019-03-24T04:41:18.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker 配置 Mysql主从复制">
 <meta name="twitter:description" content="Docker配置Mysql主从复制为什么基于 Docker 搭建？ 一台机器上可以运行多个 Docker 容器 Docker 容器之间相互独立，有独立 ip，互不冲突 Docker 使用步骤简便，启动容器在秒级别  利用 Docker 搭建主从服务器首先拉取 docker 镜像，这里使用5.7版本的 mysql docker pull mysql:5.7 在宿主机中创建配置文件，方便同步到对应的">
@@ -423,7 +423,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  773
+                  778
                 </span>
               
 
@@ -483,7 +483,7 @@
 <p>此时可以使用Navicat等工具测试连接mysql<br><img src="/images/cc.png" alt=""></p>
 <h4 id="通过-navicat-工具在-master-数据库创建数据同步用户-并授予-REPLICATION-SLAVE-权限"><a href="#通过-navicat-工具在-master-数据库创建数据同步用户-并授予-REPLICATION-SLAVE-权限" class="headerlink" title="通过 navicat 工具在 master 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限"></a>通过 navicat 工具在 master 数据库创建数据同步用户,并授予 REPLICATION SLAVE 权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &apos;slave&apos;@&apos;%&apos; IDENTIFIED BY &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT REPLICATION SLAVE ON *.* to &apos;slave&apos;@&apos;%&apos; identified by &apos;123456&apos;;</span><br></pre></td></tr></table></figure>
-<p>查看状态，记住 File、Position的值，在 slave 中将用到。</p>
+<p>通过<code>show master status;</code>查看状态，记住 File、Position的值，在 slave 中将用到。</p>
 <h4 id="通过-navicat-工具在-slave-数据库设置主库链接"><a href="#通过-navicat-工具在-slave-数据库设置主库链接" class="headerlink" title="通过 navicat 工具在 slave 数据库设置主库链接"></a>通过 navicat 工具在 slave 数据库设置主库链接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">change master to master_host=&apos;172.17.0.2&apos;,master_user=&apos;slave&apos;,master_password=&apos;123456&apos;,master_log_file=&apos;mysql-bin.000003&apos;,master_log_pos=686,master_port=3306;</span><br></pre></td></tr></table></figure>
 <p><strong>命令说明：</strong></p>
 <p><strong>master_host</strong> ：Master的地址，指的是容器的独立ip,可以通过<code>docker inspect 容器名称|容器id |grep IPAddress</code>查询容器的ip</p>
@@ -544,6 +544,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Docker搭建Mysql多主.html" rel="prev" title="docker 配置 Mysql多主同步">
+                docker 配置 Mysql多主同步 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -627,7 +631,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -743,7 +747,7 @@
 
   <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.0k字</span>
+  <span class="post-count">博客全站共7.0k字</span>
 </div>
 </div>
 
